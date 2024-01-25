@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Page</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 0;
+        background-color: #f0f0f0;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0;
+      }
+
+      body {
+        font-size: 16px;
+      }
+
+      @media only screen and (max-width: 768px) {
+        body {
+          font-size: 14px;
+        }
+      }
+
+      header {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 15px;
+        display: flex;
+        align-items: center; /* Align items vertically in the center */
+      }
+
+       header a {
+            color: white;
+            text-decoration: none;
+            margin-right: 5px;
+            cursor: pointer;
+            font-size: xx-large;
+        }
+
+
+      header img {
+        border-radius: 50%; /* Make the image round */
+        margin-right: 10px;
+      }
+
+      .user-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .user-info h1 {
+        margin: 0;
+      }
+
+      .chat-container {
+        display: flex;
+        flex: 1;
+        flex-direction: column-reverse; /* Reverse the order of child elements */
+        overflow: hidden; /* Prevents the input area from pushing content out of view */
+      }
+
+      .sidebar {
+        flex: 1;
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        border-right: 2px solid #4caf50;
+      }
+
+      .sidebar h2 {
+        color: #4caf50;
+      }
+
+      .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .sidebar li {
+        margin-bottom: 10px;
+      }
+
+      .sidebar a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+      }
+
+      .chat-area {
+        flex: 3;
+        padding: 20px;
+        display: flex;
+        flex-direction: column-reverse; /* Reverse the order of messages */
+        overflow-y: auto;
+      }
+
+      .message {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        max-width: 70%;
+      }
+
+      .message.sender {
+        align-self: flex-end;
+        background-color: #333;
+        color: white;
+      }
+
+      .message.receiver {
+        align-self: flex-start;
+        background-color: #ddd;
+      }
+
+      .input-area {
+        display: flex;
+        padding: 10px;
+      }
+
+      .input-area input {
+        flex: 3;
+        padding: 10px;
+        border: 2px solid #4caf50;
+        border-radius: 5px;
+        margin-right: 10px;
+        outline: none;
+      }
+
+      .input-area button {
+        flex: 1;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .input-area {
+        display: flex;
+        padding: 10px;
+      }
+
+      .input-area input {
+        flex: 3;
+        padding: 10px;
+        border: 2px solid #4caf50;
+        border-radius: 5px;
+        margin-right: 10px;
+        outline: none;
+      }
+
+      .input-area button {
+        flex: 1;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        outline: none;
+      }
+
+      /* Media Queries for responsiveness */
+      @media only screen and (max-width: 768px) {
+        .chat-container {
+          flex-direction: column;
+          height: auto;
+        }
+
+        .sidebar,
+        .chat-area {
+          flex: 1;
+          border-right: none;
+        }
+
+        .message {
+          max-width: 100%;
+        }
+      }
+      .chat-area::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .chat-area::-webkit-scrollbar-thumb {
+        background-color: #4caf50;
+        border-radius: 5px;
+      }
+      .sidebar {
+        padding: 15px;
+      }
+
+      .chat-area {
+        padding: 15px;
+      }
+      .message,
+      .input-area {
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .sidebar a:hover,
+      .input-area button:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+                <a href="homepage.html">&larr;</a>
+      <img src="image/sharan2.jpg" alt="Sharan img" width="50" height="50" />
+      <div class="user-info">
+        <h1 onclick="redirectToProfile()">Sharan Vasoya</h1>
+    </div>
+    </header>
+
+    <div class="chat-container">
+      <div class="chat-area" id="chatArea">
+        <div class="input-area">
+          <input
+            type="text"
+            id="messageInput"
+            placeholder="Type your message..."
+          />
+          <button onclick="sendMessage()">Send</button>
+        </div>
+
+        <script>
+          function sendMessage() {
+            var messageInput = document.getElementById("messageInput");
+            var messageText = messageInput.value.trim();
+
+            if (messageText !== "") {
+              var messageElement = document.createElement("div");
+              messageElement.classList.add("message", "sender");
+              messageElement.innerHTML = "<p>" + messageText + "</p>";
+
+              var chatArea = document.getElementById("chatArea");
+              chatArea.appendChild(messageElement);
+
+              messageInput.value = "";
+              chatArea.scrollTop = chatArea.scrollHeight;
+            }
+          }
+
+          function checkEnter(event) {
+            if (event.keyCode === 13) {
+              sendMessage();
+            }
+          }
+
+           function redirectToProfile() {
+                // Add code to redirect to my profile.html
+                window.location.href = "myprofile2.html";
+            }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
