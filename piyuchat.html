@@ -180,9 +180,13 @@
           border-right: none;
         }
 
-        .message {
-          max-width: 100%;
-        }
+        .chat-area {
+        flex: 3;
+        padding: 20px;
+        display: flex;
+        overflow-y: auto;
+        flex-direction: column;
+      }
       }
       .chat-area::-webkit-scrollbar {
         width: 8px;
@@ -220,16 +224,7 @@
 
     <div class="chat-container">
       <div class="chat-area" id="chatArea">
-        <div class="input-area">
-          <input
-            type="text"
-            id="messageInput"
-            placeholder="Type your message..."
-            onkeypress="checkEnter(event)"
-          />
-          <button onclick="sendMessage()">Send</button>
-        </div>
-
+        
         <script>
           function sendMessage() {
             var messageInput = document.getElementById("messageInput");
@@ -239,10 +234,10 @@
               var messageElement = document.createElement("div");
               messageElement.classList.add("message", "sender");
               messageElement.innerHTML = "<p>" + messageText + "</p>";
-
+              
               var chatArea = document.getElementById("chatArea");
               chatArea.appendChild(messageElement);
-
+              
               messageInput.value = "";
               chatArea.scrollTop = chatArea.scrollHeight;
             }
@@ -261,5 +256,14 @@
         </script>
       </div>
     </div>
+          <div class="input-area">
+            <input
+              type="text"
+              id="messageInput"
+              placeholder="Type your message..."
+              onkeypress="checkEnter(event)"
+            />
+            <button onclick="sendMessage()">Send</button>
+          </div>
   </body>
 </html>
