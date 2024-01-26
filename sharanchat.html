@@ -225,6 +225,8 @@
 
     <div class="chat-container">
       <div class="chat-area" id="chatArea">
+       
+
         <script>
           function sendMessage() {
             var messageInput = document.getElementById("messageInput");
@@ -256,14 +258,14 @@
         </script>
       </div>
     </div>
-    <div class="input-area">
-      <input
-        type="text"
-        id="messageInput"
-        placeholder="Type your message..."
-        onkeypress="checkEnter(event)"
-      />
-      <button onclick="sendMessage()">Send</button>
-    </div>
+     <div class="input-area">
+          <input
+            type="text"
+            id="messageInput"
+            placeholder="Type your message..."
+            onkeypress="checkEnter(event)"
+          />
+          <button onclick="sendMessage()">Send</button>
+        </div>
   </body>
 </html>
