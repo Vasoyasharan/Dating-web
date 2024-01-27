@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dating Website</title>
     <style>
       body {
-        font-family: Arial, sans-serif;
+        font-family: "Arial", sans-serif;
         margin: 0;
         padding: 0;
+        background-color: #f0f0f0;
+        color: #333;
       }
 
       header {
@@ -17,7 +21,7 @@
       }
 
       nav {
-        background-color: #666;
+        background-color: #838383;
         text-align: center;
         padding: 10px;
       }
@@ -30,9 +34,10 @@
 
       .profile-container {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        flex-wrap: wrap;
+        padding: 20px;
       }
 
       .profile {
@@ -43,40 +48,40 @@
         width: 250px;
         border-radius: 10px;
         transition: transform 0.3s, border-color 0.3s;
+        background-color: white;
       }
 
       .profile:hover {
-        transform: scale(1.07);
+        transform: scale(1.05);
         border-color: #3cda98;
-        border-radius: 5%;
       }
+
       .profile img {
-        max-width: 150px;
-        max-height: 150px;
+        max-width: 100%;
+        height: auto;
         border-radius: 50%;
         border: 2px solid #6bffba;
+        margin-bottom: 15px;
       }
-      img:hover {
-        border-radius: 20%;
-        border: 2px solid #3cda98;
+
+      .profile h2,
+      .profile p {
+        margin: 0;
       }
 
       .chat-button {
         background-color: #7bdb80;
         color: white;
         border: none;
-        padding: 5px 10px;
+        padding: 8px 12px;
         border-radius: 5px;
         cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
       }
 
       .chat-button:hover {
         background-color: #43f372;
-        transform: scale(1.25);
-      }
-
-      .profile-container:hover {
-        background-color: #fff;
+        transform: scale(1.1);
       }
     </style>
   </head>
@@ -96,7 +101,7 @@
         <h2>Sharan Vasoya</h2>
         <p>Age: 21</p>
         <p>Location: California</p>
-        <a href="sharanchat.html"> <button class="chat-button">Chat</button></a>
+        <a href="sharanchat.html"><button class="chat-button">Chat</button></a>
       </div>
 
       <div class="profile">
@@ -149,7 +154,8 @@
         <p>Age: 20</p>
         <p>Location: Toronto</p>
         <a href="prekshachat.html">
-          <button class="chat-button">Chat</button></a>
+          <button class="chat-button">Chat</button></a
+        >
       </div>
 
       <div class="profile">
@@ -172,7 +178,7 @@
         <img src="image/piyu.jpg" alt="Profile Picture" />
         <h2>Priyanshi Patel</h2>
         <p>Age: 21</p>
-        <p>Location: Dubai </p>
+        <p>Location: Dubai</p>
         <a href="piyuchat.html"> <button class="chat-button">Chat</button></a>
       </div>
 
@@ -180,7 +186,7 @@
         <img src="image/axita.jpg" alt="Profile Picture" />
         <h2>Axita Variya</h2>
         <p>Age: 18</p>
-        <p>Location: Edinburg </p>
+        <p>Location: Edinburg</p>
         <a href="axitachat.html"> <button class="chat-button">Chat</button></a>
       </div>
 
