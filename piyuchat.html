@@ -119,6 +119,27 @@
         background-color: #ddd;
       }
 
+      .message-options {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+      }
+      /* 
+      .message:hover .message-options {
+        display: block;
+      }
+      */
+      .message-options a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+      }
+
       .input-area {
         display: flex;
         padding: 10px;
@@ -181,12 +202,12 @@
         }
 
         .chat-area {
-        flex: 3;
-        padding: 20px;
-        display: flex;
-        overflow-y: auto;
-        flex-direction: column;
-      }
+          flex: 3;
+          padding: 20px;
+          display: flex;
+          overflow-y: auto;
+          flex-direction: column;
+        }
       }
       .chat-area::-webkit-scrollbar {
         width: 8px;
@@ -224,7 +245,6 @@
 
     <div class="chat-container">
       <div class="chat-area" id="chatArea">
-        
         <script>
           function sendMessage() {
             var messageInput = document.getElementById("messageInput");
@@ -234,10 +254,10 @@
               var messageElement = document.createElement("div");
               messageElement.classList.add("message", "sender");
               messageElement.innerHTML = "<p>" + messageText + "</p>";
-              
+
               var chatArea = document.getElementById("chatArea");
               chatArea.appendChild(messageElement);
-              
+
               messageInput.value = "";
               chatArea.scrollTop = chatArea.scrollHeight;
             }
@@ -256,14 +276,14 @@
         </script>
       </div>
     </div>
-          <div class="input-area">
-            <input
-              type="text"
-              id="messageInput"
-              placeholder="Type your message..."
-              onkeypress="checkEnter(event)"
-            />
-            <button onclick="sendMessage()">Send</button>
-          </div>
+    <div class="input-area">
+      <input
+        type="text"
+        id="messageInput"
+        placeholder="Type your message..."
+        onkeypress="checkEnter(event)"
+      />
+      <button onclick="sendMessage()">Send</button>
+    </div>
   </body>
 </html>

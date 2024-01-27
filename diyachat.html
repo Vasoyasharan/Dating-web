@@ -119,6 +119,27 @@
         background-color: #ddd;
       }
 
+      .message-options {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+      }
+      /* 
+      .message:hover .message-options {
+        display: block;
+      }
+      */
+      .message-options a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+      }
+
       .input-area {
         display: flex;
         padding: 10px;
@@ -223,33 +244,7 @@
     </header>
 
     <div class="chat-container">
-      <div class="chat-area" id="chatArea">
-        
-        <script>
-          function sendMessage() {
-            var messageInput = document.getElementById("messageInput");
-            var messageText = messageInput.value.trim();
-
-            if (messageText !== "") {
-              var messageElement = document.createElement("div");
-              messageElement.classList.add("message", "sender");
-              messageElement.innerHTML = "<p>" + messageText + "</p>";
-
-              var chatArea = document.getElementById("chatArea");
-              chatArea.appendChild(messageElement);
-
-              messageInput.value = "";
-              chatArea.scrollTop = chatArea.scrollHeight;
-            }
-          }
-
-          function checkEnter(event) {
-            if (event.keyCode === 13) {
-              sendMessage();
-            }
-          }
-        </script>
-      </div>
+      <div class="chat-area" id="chatArea"></div>
     </div>
     <div class="input-area">
       <input
@@ -260,5 +255,82 @@
       />
       <button onclick="sendMessage()">Send</button>
     </div>
+    <script>
+      function sendMessage() {
+        var messageInput = document.getElementById("messageInput");
+        var messageText = messageInput.value.trim();
+
+        if (messageText !== "") {
+          var messageElement = document.createElement("div");
+          messageElement.classList.add("message", "sender");
+          messageElement.innerHTML =
+            "<p>" +
+            messageText +
+            "</p><div class='message-options'><a href='#' onclick='copyMessage(this)'>Copy message</a><a href='#' onclick='unsendMessage(this)'>Unsend message</a></div>";
+
+          messageElement.addEventListener("click", function (event) {
+            showOptions(event, messageElement);
+          });
+
+          var chatArea = document.getElementById("chatArea");
+          chatArea.appendChild(messageElement);
+
+          messageInput.value = "";
+          chatArea.scrollTop = chatArea.scrollHeight;
+        }
+      }
+
+      function showOptions(event, messageElement) {
+        var optionsElement = messageElement.querySelector(".message-options");
+        optionsElement.style.display = "block";
+        optionsElement.style.top = messageElement.offsetTop + "px";
+        optionsElement.style.left =
+          messageElement.offsetLeft - optionsElement.offsetWidth;
+
+        document.addEventListener("click", function hideOptions() {
+          optionsElement.style.display = "none";
+          document.removeEventListener("click", hideOptions);
+        });
+
+        event.stopPropagation(); // Prevent click event from reaching the document
+      }
+
+      function checkEnter(event) {
+        if (event.keyCode === 13) {
+          sendMessage();
+        }
+      }
+
+      function redirectToProfile() {
+        // Add code to redirect to my profile.html
+        window.location.href = "myprofile2.html";
+      }
+
+      function copyMessage(element) {
+        var messageText =
+          element.parentElement.parentElement.querySelector("p").innerText;
+        navigator.clipboard
+          .writeText(messageText)
+          .then(function () {
+            // alert("Message copied!");
+            hideOptions(element);
+          })
+          .catch(function (err) {
+            console.error("Unable to copy text", err);
+          });
+      }
+
+      function hideOptions(element) {
+        var optionsElement =
+          element.parentElement.parentElement.querySelector(".message-options");
+        optionsElement.style.display = "none";
+      }
+
+      function unsendMessage(element) {
+        var messageContainer = element.parentElement.parentElement;
+        messageContainer.parentNode.removeChild(messageContainer);
+        // alert("Message unsent!");
+      }
+    </script>
   </body>
 </html>
