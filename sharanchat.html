@@ -286,7 +286,7 @@
   optionsElement.style.display = "block";
   optionsElement.style.top = messageElement.offsetTop + "px";
   optionsElement.style.left =
-    messageElement.offsetLeft - optionsElement.offsetWidth + "px";
+    messageElement.offsetLeft - optionsElement.offsetWidth;
 
   document.addEventListener("click", function hideOptions() {
     optionsElement.style.display = "none";
