@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat Page</title>
+    <!-- Font Awesome library link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
     <style>
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -56,6 +62,18 @@
 
       .user-info h1 {
         margin: 0;
+      }
+
+      .header-icons {
+        justify-content: space-between;
+        margin-right: 3px;
+        margin-left: auto;
+      }
+
+      .fa-phone-alt:before,
+      .fa-phone-flip:before {
+        content: "\f879";
+        padding-left: 20px;
       }
 
       .chat-container {
@@ -128,7 +146,7 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         z-index: 1;
       }
-     /* 
+      /* 
       .message:hover .message-options {
         display: block;
       }
@@ -242,6 +260,13 @@
       <div class="user-info">
         <h1 onclick="redirectToProfile()">Sharan Vasoya</h1>
       </div>
+      <div class="header-icons">
+        <i class="fas fa-video" style="cursor: pointer"></i>
+        <i
+          class="fas fa-phone-alt"
+          style="margin-right: 10px; cursor: pointer"
+        ></i>
+      </div>
     </header>
 
     <div class="chat-container">
@@ -282,20 +307,19 @@
       }
 
       function showOptions(event, messageElement) {
-  var optionsElement = messageElement.querySelector(".message-options");
-  optionsElement.style.display = "block";
-  optionsElement.style.top = messageElement.offsetTop + "px";
-  optionsElement.style.left =
-    messageElement.offsetLeft - optionsElement.offsetWidth;
+        var optionsElement = messageElement.querySelector(".message-options");
+        optionsElement.style.display = "block";
+        optionsElement.style.top = messageElement.offsetTop + "px";
+        optionsElement.style.left =
+          messageElement.offsetLeft - optionsElement.offsetWidth;
 
-  document.addEventListener("click", function hideOptions() {
-    optionsElement.style.display = "none";
-    document.removeEventListener("click", hideOptions);
-  });
+        document.addEventListener("click", function hideOptions() {
+          optionsElement.style.display = "none";
+          document.removeEventListener("click", hideOptions);
+        });
 
-  event.stopPropagation(); // Prevent click event from reaching the document
-}
-
+        event.stopPropagation(); // Prevent click event from reaching the document
+      }
 
       function checkEnter(event) {
         if (event.keyCode === 13) {
@@ -309,24 +333,24 @@
       }
 
       function copyMessage(element) {
-  var messageText =
-    element.parentElement.parentElement.querySelector("p").innerText;
-  navigator.clipboard
-    .writeText(messageText)
-    .then(function () {
-      // alert("Message copied!");
-      hideOptions(element);
-    })
-    .catch(function (err) {
-      console.error("Unable to copy text", err);
-    });
-}
+        var messageText =
+          element.parentElement.parentElement.querySelector("p").innerText;
+        navigator.clipboard
+          .writeText(messageText)
+          .then(function () {
+            // alert("Message copied!");
+            hideOptions(element);
+          })
+          .catch(function (err) {
+            console.error("Unable to copy text", err);
+          });
+      }
 
-function hideOptions(element) {
-  var optionsElement = element.parentElement.parentElement.querySelector(".message-options");
-  optionsElement.style.display = "none";
-}
-
+      function hideOptions(element) {
+        var optionsElement =
+          element.parentElement.parentElement.querySelector(".message-options");
+        optionsElement.style.display = "none";
+      }
 
       function unsendMessage(element) {
         var messageContainer = element.parentElement.parentElement;
