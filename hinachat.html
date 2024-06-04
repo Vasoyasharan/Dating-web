@@ -4,19 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat Page</title>
+    <!-- FontAwesome CDN for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
     <style>
+      :root {
+        --primary-color: #1e1e2f;
+        --secondary-color: #4c66af;
+        --background-color: #f5f5f5;
+        --text-color: #333;
+        --text-color-light: #fff;
+        --border-radius: 10px;
+        --transition-speed: 0.3s;
+      }
+
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         padding: 0;
-        background-color: #f0f0f0;
-        color: #333;
+        background-color: var(--background-color);
+        color: var(--text-color);
         display: flex;
         flex-direction: column;
         height: 100vh;
         margin: 0;
-      }
-
-      body {
         font-size: 16px;
       }
 
@@ -27,24 +39,25 @@
       }
 
       header {
-        background-color: #333;
-        color: white;
+        background-color: var(--primary-color);
+        color: var(--text-color-light);
         text-align: center;
         padding: 15px;
         display: flex;
-        align-items: center; /* Align items vertically in the center */
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
 
       header a {
-        color: white;
+        color: var(--text-color-light);
         text-decoration: none;
-        margin-right: 5px;
+        margin-right: 10px;
         cursor: pointer;
         font-size: xx-large;
       }
 
       header img {
-        border-radius: 50%; /* Make the image round */
+        border-radius: 50%;
         margin-right: 10px;
       }
 
@@ -56,62 +69,41 @@
 
       .user-info h1 {
         margin: 0;
+        cursor: pointer;
       }
 
       .chat-container {
         display: flex;
         flex: 1;
-        flex-direction: column-reverse; /* Reverse the order of child elements */
-        overflow: hidden; /* Prevents the input area from pushing content out of view */
-      }
-
-      .sidebar {
-        flex: 1;
-        background-color: #333;
-        color: white;
-        padding: 20px;
-        border-right: 2px solid #4caf50;
-      }
-
-      .sidebar h2 {
-        color: #4caf50;
-      }
-
-      .sidebar ul {
-        list-style-type: none;
-        padding: 0;
-      }
-
-      .sidebar li {
-        margin-bottom: 10px;
-      }
-
-      .sidebar a {
-        text-decoration: none;
-        color: #fff;
-        font-weight: bold;
+        flex-direction: column;
+        overflow: hidden;
       }
 
       .chat-area {
-        flex: 3;
+        flex: 1;
         padding: 20px;
         display: flex;
-        flex-direction: column-reverse; /* Reverse the order of messages */
+        flex-direction: column;
         overflow-y: auto;
+        background-color: #fff;
       }
 
       .message {
         background-color: #fff;
         padding: 15px;
-        border-radius: 10px;
+        border-radius: var(--border-radius);
         margin-bottom: 15px;
         max-width: 70%;
+        position: relative;
+        transition: background-color var(--transition-speed),
+          color var(--transition-speed);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
 
       .message.sender {
         align-self: flex-end;
-        background-color: #333;
-        color: white;
+        background-color: var(--secondary-color);
+        color: var(--text-color-light);
       }
 
       .message.receiver {
@@ -122,80 +114,69 @@
       .message-options {
         display: none;
         position: absolute;
-        top: 0;
+        bottom: 100%;
         right: 0;
         background-color: #fff;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         z-index: 1;
+        border-radius: var(--border-radius);
+        white-space: nowrap;
       }
-      /* 
-      .message:hover .message-options {
-        display: block;
+
+      .message-options.show-above {
+        bottom: 100%;
       }
-      */
+
+      .message-options.show-below {
+        top: 100%;
+        bottom: auto;
+      }
+
       .message-options a {
         display: block;
         padding: 10px;
         text-decoration: none;
-        color: #333;
+        color: var(--text-color);
       }
 
       .input-area {
         display: flex;
         padding: 10px;
+        background-color: #fff;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
       }
 
       .input-area input {
         flex: 3;
         padding: 10px;
-        border: 2px solid #4caf50;
-        border-radius: 5px;
+        border: 2px solid var(--secondary-color);
+        border-radius: var(--border-radius);
         margin-right: 10px;
         outline: none;
       }
 
       .input-area button {
         flex: 1;
+        font-size: 20px;
+        background-color: var(--primary-color);
+        color: var(--text-color-light);
+        border: none;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        outline: none;
+        transition: background-color var(--transition-speed);
+      }
+
+      .input-area button:hover {
         background-color: #333;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        outline: none;
       }
 
-      .input-area {
-        display: flex;
-        padding: 10px;
-      }
-
-      .input-area input {
-        flex: 3;
-        padding: 10px;
-        border: 2px solid #4caf50;
-        border-radius: 5px;
-        margin-right: 10px;
-        outline: none;
-      }
-
-      .input-area button {
-        flex: 1;
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        outline: none;
-      }
-
-      /* Media Queries for responsiveness */
       @media only screen and (max-width: 768px) {
         .chat-container {
           flex-direction: column;
           height: auto;
         }
 
-        .sidebar,
         .chat-area {
           flex: 1;
           border-right: none;
@@ -205,39 +186,25 @@
           max-width: 100%;
         }
       }
+
       .chat-area::-webkit-scrollbar {
         width: 8px;
       }
 
       .chat-area::-webkit-scrollbar-thumb {
-        background-color: #4caf50;
+        background-color: var(--primary-color);
         border-radius: 5px;
       }
-      .chat-area {
-        flex: 3;
-        padding: 20px;
-        display: flex;
-        overflow-y: auto;
-        flex-direction: column;
-      }
 
-      .chat-area {
-        padding: 15px;
-      }
-      .message,
-      .input-area {
-        transition: background-color 0.3s, color 0.3s;
-      }
-      .sidebar a:hover,
-      .input-area button:hover {
-        background-color: #555;
+      .responsive-icon {
+        font-size: 25px; /* Adjust the size as needed */
       }
     </style>
   </head>
   <body>
     <header>
-      <a href="index.html">&larr;</a>
-      <img src="image/hina.jpg" alt="Sharan img" width="50" height="50" />
+      <a href="index.html"><i class="fas fa-less-than responsive-icon"></i></a>
+      <img src="image/hina.jpg" alt="Hina img" width="50" height="50" />
       <div class="user-info">
         <h1 onclick="redirectToProfile()">Hina Rana</h1>
       </div>
@@ -255,24 +222,36 @@
       />
       <button onclick="sendMessage()">Send</button>
     </div>
+
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("messageInput")
+          .addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+              sendMessage();
+            }
+          });
+      });
+
       function sendMessage() {
-        var messageInput = document.getElementById("messageInput");
-        var messageText = messageInput.value.trim();
+        const messageInput = document.getElementById("messageInput");
+        const messageText = messageInput.value.trim();
 
         if (messageText !== "") {
-          var messageElement = document.createElement("div");
+          const messageElement = document.createElement("div");
           messageElement.classList.add("message", "sender");
-          messageElement.innerHTML =
-            "<p>" +
-            messageText +
-            "</p><div class='message-options'><a href='#' onclick='copyMessage(this)'>Copy message</a><a href='#' onclick='unsendMessage(this)'>Unsend message</a></div>";
+          messageElement.innerHTML = `<p>${messageText}</p>
+                                        <div class='message-options'>
+                                            <a href='#' onclick='copyMessage(this)'>Copy message</a>
+                                            <a href='#' onclick='unsendMessage(this)'>Unsend message</a>
+                                        </div>`;
 
           messageElement.addEventListener("click", function (event) {
             showOptions(event, messageElement);
           });
 
-          var chatArea = document.getElementById("chatArea");
+          const chatArea = document.getElementById("chatArea");
           chatArea.appendChild(messageElement);
 
           messageInput.value = "";
@@ -281,38 +260,50 @@
       }
 
       function showOptions(event, messageElement) {
-        var optionsElement = messageElement.querySelector(".message-options");
-        optionsElement.style.display = "block";
-        optionsElement.style.top = messageElement.offsetTop + "px";
-        optionsElement.style.left =
-          messageElement.offsetLeft - optionsElement.offsetWidth;
+        // Hide options for all other messages
+        const allOptions = document.querySelectorAll(".message-options");
+        allOptions.forEach((options) => (options.style.display = "none"));
 
-        document.addEventListener("click", function hideOptions() {
-          optionsElement.style.display = "none";
-          document.removeEventListener("click", hideOptions);
+        // Show options for the clicked message
+        const optionsElement = messageElement.querySelector(".message-options");
+
+        // Check if the message is close to the bottom of the chat area
+        const chatArea = document.getElementById("chatArea");
+        const messageBottom = messageElement.getBoundingClientRect().bottom;
+        const chatAreaBottom = chatArea.getBoundingClientRect().bottom;
+
+        // Add the appropriate class based on the position of the message
+        if (messageBottom + optionsElement.offsetHeight > chatAreaBottom) {
+          optionsElement.classList.add("show-above");
+          optionsElement.classList.remove("show-below");
+        } else {
+          optionsElement.classList.add("show-below");
+          optionsElement.classList.remove("show-above");
+        }
+
+        optionsElement.style.display = "block";
+
+        // Event listener to hide options when clicking outside
+        document.addEventListener("click", function hideOptions(e) {
+          if (!messageElement.contains(e.target)) {
+            optionsElement.style.display = "none";
+            document.removeEventListener("click", hideOptions);
+          }
         });
 
         event.stopPropagation(); // Prevent click event from reaching the document
       }
 
-      function checkEnter(event) {
-        if (event.keyCode === 13) {
-          sendMessage();
-        }
-      }
-
       function redirectToProfile() {
-        // Add code to redirect to my profile.html
         window.location.href = "myprofile2.html";
       }
 
       function copyMessage(element) {
-        var messageText =
+        const messageText =
           element.parentElement.parentElement.querySelector("p").innerText;
         navigator.clipboard
           .writeText(messageText)
           .then(function () {
-            // alert("Message copied!");
             hideOptions(element);
           })
           .catch(function (err) {
@@ -321,15 +312,13 @@
       }
 
       function hideOptions(element) {
-        var optionsElement =
-          element.parentElement.parentElement.querySelector(".message-options");
+        const optionsElement = element.parentElement;
         optionsElement.style.display = "none";
       }
 
       function unsendMessage(element) {
-        var messageContainer = element.parentElement.parentElement;
+        const messageContainer = element.parentElement.parentElement;
         messageContainer.parentNode.removeChild(messageContainer);
-        // alert("Message unsent!");
       }
     </script>
   </body>

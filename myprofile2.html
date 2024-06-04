@@ -1,190 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome CDN for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f7fafc;
-        }
-
-        nav {
-            background-color: #2c5282;
-            color: white;
-        }
-
-        nav a {
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 1.5rem;
-        }
-
-        .back-arrow {
-            font-size: 2.5rem;
-            margin-right: 0.5rem;
-            cursor: pointer;
-        }
-
-        .profile-container {
-            background-color: #ffffff;
-            padding: 2rem;
-            margin: 2rem auto;
-            border-radius: 1rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-        }
-
-        .profile-picture {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
-        .profile-picture img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 4px solid #4299e1;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .profile-picture img:hover {
-            transform: scale(1.1);
-        }
-
-        .profile-info h1 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-top: 1rem;
-        }
-
-        .profile-info p {
-            font-size: 1rem;
-            color: #718096;
-        }
-
-        .about-me,
-        .interests {
-            margin-top: 1.5rem;
-        }
-
-        .about-me h2,
-        .interests h2 {
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .about-me p {
-            font-size: 1rem;
-            color: #4a5568;
-        }
-
-        .interests ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .interests li {
-            font-size: 1rem;
-            color: #4a5568;
-            margin-bottom: 0.5rem;
-        }
-
-        .message-btn,
-        .edit-profile-btn {
-            margin-top: 1.5rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-blue {
-            background-color: #4299e1;
-            color: #fff;
-        }
-
-        .btn-blue:hover {
-            background-color: #3182ce;
-        }
-
-        .text-xl {
-            font-size: 2.25rem;
-            line-height: 1.75rem;
-        }
+      @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
     </style>
-</head>
+  </head>
 
-<body>
-    <nav class="p-2">
-        <div class="container mx-auto flex items-center">
-            <div class="back-arrow" onclick="redirectToIndex()">&#8592;</div>
-            <a href="#" class="font-bold text-xl">Heart Soul Match</a>
+  <body class="font-sans bg-gray-100">
+    <nav class="bg-gradient-to-r from-red-500 to-indigo-900 text-white p-2">
+      <div class="container mx-auto flex items-center">
+        <div
+          class="text-2xl md:text-3xl mr-2 cursor-pointer"
+          onclick="redirectToIndex()"
+        >
+          <i class="fas fa-arrow-left"></i>
         </div>
+        <a href="#" class="font-bold text-lg md:text-xl font-pacifico"
+          >Heart Soul Match</a
+        >
+      </div>
     </nav>
 
-    <div class="container mx-auto">
-        <div class="profile-container">
-            <div class="profile-picture">
-                <img src="image/sharan1.jpg" alt="Your Profile Picture"
-                class="rounded-full hover:border-4 hover:border-blue-600 hover:scale-150 transform transition duration-300" />
-            </div>
+    <div
+      class="container mx-auto mt-8 p-4 bg-white rounded-lg shadow-md max-w-lg"
+    >
+      <div class="flex justify-center mb-4">
+        <img
+          src="image/sharan1.jpg"
+          alt="Your Profile Picture"
+          class="w-32 h-32 rounded-full border-4 border-red-500 transform transition-transform duration-300 hover:rotate-y-360 hover:border-indigo-900"
+        />
+      </div>
 
-            <div class="profile-info">
-                <h1 class="text-2xl font-semibold mt-4">Sharan Vasoya</h1>
-                <p class="text-gray-500">Age: 21</p>
-                <p class="text-gray-500">Location: California</p>
-            </div>
+      <div class="text-center">
+        <h1 class="text-xl md:text-2xl font-semibold mt-4">Sharan Vasoya</h1>
+        <p class="text-gray-500">Age: 21</p>
+        <p class="text-gray-500">Location: California</p>
+      </div>
 
-            <div class="about-me mt-6">
-                <h2 class="text-xl font-semibold">About Me</h2>
-                <p class="mt-2">
-                    Detail-oriented web developer with expertise in front-end
-                    development and UI/UX design. Skilled in utilizing frameworks like
-                    React and Angular to build scalable and interactive web
-                    applications. Committed to delivering seamless user experiences
-                    through clean and efficient code.
-                </p>
-            </div>
+      <div class="mt-6">
+        <h2 class="text-lg md:text-xl font-semibold">About Me</h2>
+        <p class="mt-2 text-gray-700">
+          Passionate web developer with a knack for creating dynamic and
+          responsive web applications. Experienced in using modern frameworks
+          like React and Angular, I strive to deliver seamless user experiences
+          through clean and efficient code. In my free time, I enjoy exploring
+          new technologies and improving my skills.
+        </p>
+      </div>
 
-            <div class="interests mt-6">
-                <h2 class="text-xl font-semibold">Interests</h2>
-                <ul class="mt-2 list-disc list-inside">
-                    <li>Traveling</li>
-                    <li>Reading</li>
-                    <li>Coding</li>
-                </ul>
-            </div>
+      <div class="mt-6">
+        <h2 class="text-lg md:text-xl font-semibold">Interests</h2>
+        <ul class="mt-2 list-disc list-inside text-gray-700">
+          <li>Traveling</li>
+          <li>Reading</li>
+          <li>Hacking</li>
+          <li>Coding</li>
+        </ul>
+      </div>
 
-            <div class="message-btn">
-                <a href="sharanchat.html" class="btn btn-blue">Message</a>
-            </div>
-
-            <!-- <div class="edit-profile-btn">
-                <a href="#" class="btn btn-blue">Edit Profile</a>
-            </div> -->
-        </div>
+      <div class="mt-6 text-center">
+        <a
+          href="sharanchat.html"
+          class="inline-block bg-red-500 text-white font-bold py-2 px-4 rounded transition-transform duration-300 hover:bg-indigo-900 hover:scale-110"
+          >Message</a
+        >
+      </div>
     </div>
-    <script>
-        function redirectToIndex() {
-            // Add code to redirect to index.html
-            window.location.href = "index.html";
-        }
-    </script>
-</body>
 
+    <script>
+      function redirectToIndex() {
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
 </html>

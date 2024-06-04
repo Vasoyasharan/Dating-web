@@ -4,32 +4,66 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dating Website</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+      :root {
+        --primary-color: #ff4b5c;
+        --secondary-color: #1f4068;
+        --background-color: #f0f0f0;
+        --text-color: #333;
+        --text-color-light: #fff;
+        --border-radius: 15px;
+        --transition-speed: 0.3s;
+      }
+
       body {
         font-family: "Arial", sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #f0f0f0;
-        color: #333;
+        background-color: var(--background-color);
+        color: var(--text-color);
       }
 
       header {
-        background-color: #333;
-        color: white;
+        background: linear-gradient(
+          90deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: var(--text-color-light);
         text-align: center;
-        padding: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        font-family: "Pacifico", cursive;
       }
 
       nav {
-        background-color: #838383;
+        background-color: var(--secondary-color);
         text-align: center;
-        padding: 10px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
 
       nav a {
-        color: white;
+        color: var(--text-color-light);
         text-decoration: none;
-        margin: 0 10px;
+        margin: 0 20px;
+        font-size: 1.2em;
+        transition: color var(--transition-speed);
+      }
+
+      nav a:hover {
+        color: var(--primary-color);
       }
 
       .profile-container {
@@ -37,51 +71,87 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        padding: 20px;
+        padding: 40px 20px;
+        gap: 20px;
       }
 
       .profile {
-        border: 2px solid #6bffba;
-        padding: 20px;
-        margin: 20px;
-        text-align: center;
+        background-color: #fff;
+        border-radius: var(--border-radius);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform var(--transition-speed),
+          box-shadow var(--transition-speed);
         width: 250px;
-        border-radius: 10px;
-        transition: transform 0.3s, border-color 0.3s;
-        background-color: white;
+        text-align: center;
+        position: relative;
+        cursor: pointer;
       }
 
       .profile:hover {
-        transform: scale(1.05);
-        border-color: #3cda98;
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
       }
 
       .profile img {
-        max-width: 100%;
+        max-width: 80%;
         height: auto;
         border-radius: 50%;
-        border: 2px solid #6bffba;
-        margin-bottom: 15px;
+        border: 2px solid var(--primary-color);
+        margin-top: 15px;
+        transition: border-color var(--transition-speed),
+          transform var(--transition-speed);
       }
 
-      .profile h2,
+      .profile:hover img {
+        border-color: var(--secondary-color);
+        animation: flip 0.5s;
+      }
+
+      .profile h2 {
+        margin: 15px 0 5px;
+        font-size: 1.5em;
+      }
+
       .profile p {
-        margin: 0;
+        margin: 5px 0;
       }
 
       .chat-button {
-        background-color: #7bdb80;
-        color: white;
+        background-color: var(--primary-color);
+        color: var(--text-color-light);
         border: none;
-        padding: 8px 12px;
-        border-radius: 5px;
+        padding: 10px 20px;
+        border-radius: 50px;
         cursor: pointer;
-        transition: background-color 0.3s, transform 0.3s;
+        margin-bottom: 20px;
+        transition: background-color var(--transition-speed),
+          transform var(--transition-speed);
       }
 
       .chat-button:hover {
-        background-color: #43f372;
+        background-color: var(--secondary-color);
         transform: scale(1.1);
+      }
+
+      .chat-button:focus {
+        outline: none;
+      }
+
+      .profile:hover .chat-button {
+        background-color: var(--secondary-color);
+      }
+
+      @keyframes flip {
+        /* 0% {
+                transform: perspective(400px) rotateY(0deg);
+            }
+            50% {
+                transform: perspective(400px) rotateY(180deg);
+            } */
+        100% {
+          transform: perspective(400px) rotateY(360deg);
+        }
       }
     </style>
   </head>
@@ -109,9 +179,7 @@
         <h2>Shivraj Neoliya</h2>
         <p>Age: 23</p>
         <p>Location: Los Angeles</p>
-        <a href="shivrajchat.html">
-          <button class="chat-button">Chat</button>
-        </a>
+        <a href="shivrajchat.html"><button class="chat-button">Chat</button></a>
       </div>
 
       <div class="profile">
@@ -119,9 +187,7 @@
         <h2>Hardik Vanani</h2>
         <p>Age: 21</p>
         <p>Location: New Chicago</p>
-        <a href="hardikchat.html">
-          <button class="chat-button">Chat</button>
-        </a>
+        <a href="hardikchat.html"><button class="chat-button">Chat</button></a>
       </div>
 
       <div class="profile">
@@ -129,7 +195,39 @@
         <h2>Yash Vadher</h2>
         <p>Age: 20</p>
         <p>Location: Boston</p>
-        <a href="yashchat.html"> <button class="chat-button">Chat</button></a>
+        <a href="yashchat.html"><button class="chat-button">Chat</button></a>
+      </div>
+
+      <div class="profile">
+        <img src="image/.jpg" alt="Picture will be Added soon" />
+        <h2>Jay Soni</h2>
+        <p>Age: 22</p>
+        <p>Location: Ottawa</p>
+        <a href="jaychat.html"><button class="chat-button">Chat</button></a>
+      </div>
+
+      <div class="profile">
+        <img src="image/.jpg" alt="Picture will be Added soon" />
+        <h2>Kapil Dabhi</h2>
+        <p>Age: 20</p>
+        <p>Location: New Jersey</p>
+        <a href="kapilchat.html"><button class="chat-button">Chat</button></a>
+      </div>
+
+      <div class="profile">
+        <img src="image/.jpg" alt="Picture will be Added soon" />
+        <h2>Shakti Zala</h2>
+        <p>Age: 23</p>
+        <p>Location: Nashua</p>
+        <a href="shaktichat.html"><button class="chat-button">Chat</button></a>
+      </div>
+
+      <div class="profile">
+        <img src="image/.jpg" alt="Picture will be Added soon" />
+        <h2>Dhruv Vaghasia</h2>
+        <p>Age: 22</p>
+        <p>Location: Manchester</p>
+        <a href="dhruvchat.html"><button class="chat-button">Chat</button></a>
       </div>
 
       <div class="profile">
@@ -137,7 +235,7 @@
         <h2>Diya Singala</h2>
         <p>Age: 19</p>
         <p>Location: Seattle</p>
-        <a href="diyachat.html"> <button class="chat-button">Chat</button></a>
+        <a href="diyachat.html"><button class="chat-button">Chat</button></a>
       </div>
 
       <div class="profile">
@@ -145,7 +243,7 @@
         <h2>Fatima Noorani</h2>
         <p>Age: 19</p>
         <p>Location: London</p>
-        <a href="fatimachat.html"> <button class="chat-button">Chat</button></a>
+        <a href="fatimachat.html"><button class="chat-button">Chat</button></a>
       </div>
 
       <div class="profile">
@@ -153,17 +251,22 @@
         <h2>Preksha Virani</h2>
         <p>Age: 20</p>
         <p>Location: Toronto</p>
-        <a href="prekshachat.html">
-          <button class="chat-button">Chat</button></a
-        >
+        <a href="prekshachat.html"><button class="chat-button">Chat</button></a>
+      </div>
+      <div class="profile">
+        <img src="image/axita.jpg" alt="Profile Picture" />
+        <h2>Axita Variya</h2>
+        <p>Age: 18</p>
+        <p>Location: Edinburg</p>
+        <a href="axitachat.html"><button class="chat-button">Chat</button></a>
       </div>
 
       <div class="profile">
-        <img src="image/deepti.jpg" alt="Profile Picture" />
-        <h2>Deepti Patel</h2>
+        <img src="image/.jpg" alt="Picture will be added soon" />
+        <h2>Ishita Geriya</h2>
         <p>Age: 20</p>
         <p>Location: New York</p>
-        <a href="deeptichat.html"> <button class="chat-button">Chat</button></a>
+        <a href="ishitachat.html".html"><button class="chat-button">Chat</button></a>
       </div>
 
       <div class="profile">
@@ -171,7 +274,7 @@
         <h2>Hina Rana</h2>
         <p>Age: 19</p>
         <p>Location: Helsinki</p>
-        <a href="hinachat.html"> <button class="chat-button">Chat</button></a>
+        <a href="hinachat.html"><button class="chat-button">Chat</button></a>
       </div>
 
       <div class="profile">
@@ -179,26 +282,17 @@
         <h2>Priyanshi Patel</h2>
         <p>Age: 21</p>
         <p>Location: Dubai</p>
-        <a href="piyuchat.html"> <button class="chat-button">Chat</button></a>
+        <a href="piyuchat.html"><button class="chat-button">Chat</button></a>
       </div>
 
-      <div class="profile">
-        <img src="image/axita.jpg" alt="Profile Picture" />
-        <h2>Axita Variya</h2>
-        <p>Age: 18</p>
-        <p>Location: Edinburg</p>
-        <a href="axitachat.html"> <button class="chat-button">Chat</button></a>
-      </div>
 
       <div class="profile">
         <img src="image/aadi2.jpg" alt="Profile Picture" />
         <h2>Aadi Rakholiya</h2>
         <p>Age: 16</p>
         <p>Location: Madrid</p>
-        <a href="aadichat.html"> <button class="chat-button">Chat</button></a>
+        <a href="aadichat.html"><button class="chat-button">Chat</button></a>
       </div>
-
-      <!-- Add more profiles as needed -->
     </div>
   </body>
 </html>
