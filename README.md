@@ -42,13 +42,17 @@ Make sure you have the following installed on your local machine:
 ### Installation
 
 1. Clone the repository:
+
     ```bash
     https://github.com/Vasoyasharan/Dating-web.git
     ```
+
 2. Navigate to the project directory:
+
     ```bash
     cd Heart-Soul
     ```
+
 3. Open `index.html` in your web browser to view the Home Page.
 
 ## Contributing
@@ -57,17 +61,23 @@ We welcome contributions! Please follow these steps:
 
 1. Fork the repository
 2. Create a new branch
+
     ```bash
     git checkout -b feature-branch
     ```
+
 3. Make your changes and commit them
+
     ```bash
     git commit -m 'Add new feature'
     ```
+
 4. Push to the branch
+
     ```bash
     git push origin feature-branch
     ```
+
 5. Create a Pull Request
 
 ## License
