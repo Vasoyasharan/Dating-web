@@ -199,6 +199,11 @@
       .responsive-icon {
         font-size: 25px; /* Adjust the size as needed */
       }
+      .attachment-button{
+        width: 25px;
+        padding-top: 10px;
+        font-size: large;
+      }
     </style>
   </head>
   <body>
@@ -213,16 +218,21 @@
     <div class="chat-container">
       <div class="chat-area" id="chatArea"></div>
     </div>
-    <div class="input-area">
-      <input
-        type="text"
-        id="messageInput"
-        placeholder="Type your message..."
-        onkeypress="checkEnter(event)"
-      />
-      <button onclick="sendMessage()">Send</button>
-    </div>
-
+   <div class="input-area">
+  <div class="attachment-button">
+    <label for="attachmentInput">
+      <i class="fas fa-paperclip"></i>
+    </label>
+    <input type="file" id="attachmentInput" style="display: none;">
+  </div>
+  <input
+    type="text"
+    id="messageInput"
+    placeholder="Type your message..."
+    onkeypress="checkEnter(event)"
+  />
+  <button onclick="sendMessage()">Send</button>
+</div>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         document
